@@ -21,4 +21,4 @@ curl http://localhost:8080/film/all
 
 curl -H "Content-Type:application/json" -X POST -d '{"firstName":"cao","lastName":"jiameng","email":"825901384@qq.com","addressId":"5","storeId":"1"}' http://localhost:8080/film/add
 
-curl -H "Content-Type:application/json" -X DELETE  '{"customerId":1}' http://localhost:8080/user/delete/1
+curl -H "Content-Type:application/json" -X DELETE  '{"customerId":1}' http://localhost:8080/film/delete/1
