@@ -1,0 +1,28 @@
+version: "3"
+services:
+  mysql-cjmtest1:
+    container_name: mysql-cjmtest1
+    build: ./docker/mysql
+    image: javatest/mysql:1.0
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+  java-cjmtest1:
+    container_name: java-cjmtest1
+    build: ./docker/java
+    image: javatest/java:1.0
+    depends_on:
+    - mysql-cjmtest1
+    links:
+    - mysql-cjmtest1
+    environment:
+      MYSQL_IP: mysql-cjmtest1
+      MYSQL_PORT: 3306
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: root
+      TITLE: "FILE ONE"
+      DESCRIPTION: "A virtual movie"
+      LANGUAGE_ID: 1
