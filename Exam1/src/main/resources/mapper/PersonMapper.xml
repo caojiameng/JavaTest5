@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hand.infra.mapper.PersonMapper" >
+  <resultMap id="BaseResultMap" type="com.hand.domain.eneity.Person" >
+    <id column="customer_id" property="customerId" jdbcType="SMALLINT" />
+    <result column="store_id" property="storeId" jdbcType="TINYINT" />
+    <result column="first_name" property="firstName" jdbcType="VARCHAR" />
+    <result column="last_name" property="lastName" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="address_id" property="addressId" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    customer_id, store_id, first_name, last_name, email, address_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from person
+    where customer_id = #{customerId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from person
+    where customer_id = #{customerId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.hand.domain.eneity.Person" >
+    insert into person (customer_id, store_id, first_name, 
+      last_name, email, address_id
+      )
+    values (#{customerId,jdbcType=SMALLINT}, #{storeId,jdbcType=TINYINT}, #{firstName,jdbcType=VARCHAR}, 
+      #{lastName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{addressId,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hand.domain.eneity.Person" >
+    insert into person
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="firstName != null" >
+        first_name,
+      </if>
+      <if test="lastName != null" >
+        last_name,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        #{customerId,jdbcType=SMALLINT},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=TINYINT},
+      </if>
+      <if test="firstName != null" >
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null" >
+        #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hand.domain.eneity.Person" >
+    update person
+    <set >
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=TINYINT},
+      </if>
+      <if test="firstName != null" >
+        first_name = #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null" >
+        last_name = #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where customer_id = #{customerId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hand.domain.eneity.Person" >
+    update person
+    set store_id = #{storeId,jdbcType=TINYINT},
+      first_name = #{firstName,jdbcType=VARCHAR},
+      last_name = #{lastName,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address_id = #{addressId,jdbcType=SMALLINT}
+    where customer_id = #{customerId,jdbcType=SMALLINT}
+  </update>
+</mapper>

@@ -2,8 +2,10 @@ package com.hand.api.controller;
 
 import com.hand.api.service.CustomerService;
 import com.hand.api.service.FilmService;
+import com.hand.api.service.PersonService;
 import com.hand.domain.eneity.Customer;
 import com.hand.domain.eneity.Film;
+import com.hand.domain.eneity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,8 @@ public class FilmController {
     private FilmService filmService;
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private PersonService personService;
 
     @RequestMapping(value = "/signin/{name}{password}",method = RequestMethod.POST)
     public void signIn(@PathParam("name") String name, @PathParam("password") String password){
@@ -39,18 +43,18 @@ public class FilmController {
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public int addUser( Customer customer){
-        return customerService.addCustomer(customer);
+    public int addUser( @RequestBody Person person){
+        return personService.addCustomer(person);
     }
 
     @RequestMapping(value = "/delete/{customerId}",method = RequestMethod.DELETE)
     public int deleteUser(@RequestBody @PathVariable Short customerId){
-        return customerService.deleteUser(customerId);
+        return personService.deleteUser(customerId);
     }
     @PostMapping(value = "/update")
     //  @RequestMapping(value = "/update",method =RequestMethod.PUT)
-    public int updateUser( Customer user){
-        return customerService.updateById(user);
+    public int updateUser( Person user){
+        return personService.updateById(user);
     }
 
 }
