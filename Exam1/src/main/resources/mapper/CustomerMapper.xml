@@ -12,6 +12,9 @@
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="last_update" property="lastUpdate" jdbcType="TIMESTAMP" />
   </resultMap>
+  <sql id="BASE_TABLE">
+    customer
+  </sql>
   <sql id="Base_Column_List" >
     customer_id, store_id, first_name, last_name, email, address_id, active, create_date, 
     last_update
@@ -139,4 +142,10 @@
       last_update = #{lastUpdate,jdbcType=TIMESTAMP}
     where customer_id = #{customerId,jdbcType=SMALLINT}
   </update>
+  <select id="selectUsers" resultType="com.hand.domain.eneity.Customer">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    <include refid="BASE_TABLE"/>
+  </select>
 </mapper>
