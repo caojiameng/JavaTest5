@@ -1,5 +1,6 @@
 # JavaTest5
 
+
 git clone https://github.com/caojiameng/JavaTest5.git
 
 cd JavaTest5
@@ -32,3 +33,5 @@ curl -H "Content-Type:application/json" -X DELETE  '{"customerId":1}' http://loc
 
 ## 可用以下语句查询修改后的Person表
 curl  http://localhost:8080/film/person/all
+
+### 并没有设置环境变量 请在配置文件中自行修改数据库地址
