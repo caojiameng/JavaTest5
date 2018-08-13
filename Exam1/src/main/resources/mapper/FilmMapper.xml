@@ -18,6 +18,9 @@
   <resultMap id="ResultMapWithBLOBs" type="com.hand.domain.eneity.Film" extends="BaseResultMap" >
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
   </resultMap>
+  <sql id="BASE_TABLE">
+    film
+  </sql>
   <sql id="Base_Column_List" >
     film_id, title, release_year, language_id, original_language_id, rental_duration, 
     rental_rate, length, replacement_cost, rating, special_features, last_update
@@ -207,4 +210,10 @@
       last_update = #{lastUpdate,jdbcType=TIMESTAMP}
     where film_id = #{filmId,jdbcType=SMALLINT}
   </update>
+  <select id="selectUsers" resultType="com.hand.domain.eneity.Film">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    <include refid="BASE_TABLE"/>
+  </select>
 </mapper>

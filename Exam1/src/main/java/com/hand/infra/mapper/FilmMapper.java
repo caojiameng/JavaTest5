@@ -2,6 +2,8 @@ package com.hand.infra.mapper;
 
 import com.hand.domain.eneity.Film;
 
+import java.util.List;
+
 public interface FilmMapper {
     int deleteByPrimaryKey(Short filmId);
 
@@ -12,6 +14,7 @@ public interface FilmMapper {
     Film selectByPrimaryKey(Short filmId);
 
     int updateByPrimaryKeySelective(Film record);
+    List<Film> selectUsers();
 
     int updateByPrimaryKeyWithBLOBs(Film record);
 
