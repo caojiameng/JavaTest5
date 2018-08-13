@@ -8,4 +8,9 @@ import java.util.List;
 
 public interface CustomerService {
     List<Customer> findAllUser();
+    int addCustomer(Customer customer);
+
+    int deleteUser(Short customerId);
+
+    int updateById(Customer user);
 }

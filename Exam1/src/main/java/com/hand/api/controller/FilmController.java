@@ -39,7 +39,18 @@ public class FilmController {
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public int addUser(@RequestBody Film film){
-        return filmService.addFilm(film);
+    public int addUser( Customer customer){
+        return customerService.addCustomer(customer);
     }
+
+    @RequestMapping(value = "/delete/{customerId}",method = RequestMethod.DELETE)
+    public int deleteUser(@RequestBody @PathVariable Short customerId){
+        return customerService.deleteUser(customerId);
+    }
+    @PostMapping(value = "/update")
+    //  @RequestMapping(value = "/update",method =RequestMethod.PUT)
+    public int updateUser( Customer user){
+        return customerService.updateById(user);
+    }
+
 }
