@@ -46,8 +46,9 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.hand.model
-
+  type-aliases-package: com.hand.domain.eneity
+  configuration:
+    map-underscore-to-camel-case: true
 
 
 #pagehelper

@@ -20,4 +20,9 @@ public class FilmServiceImpl implements FilmService {
         PageInfo result =new PageInfo(users);
         return result;
     }
+
+    @Override
+    public int addFilm(Film film) {
+        return filmMapper.insert(film);
+    }
 }
