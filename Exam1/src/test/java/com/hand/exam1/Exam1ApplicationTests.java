@@ -1,4 +1,4 @@
-package com.hand.javatest5;
+package com.hand.exam1;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Javatest5ApplicationTests {
+public class Exam1ApplicationTests {
 
     @Test
     public void contextLoads() {
