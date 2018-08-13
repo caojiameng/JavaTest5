@@ -29,3 +29,6 @@ curl -H "Content-Type:application/json" -X POST -d '{"firstName":"cao1","lastNam
 
 ## 删除
 curl -H "Content-Type:application/json" -X DELETE  '{"customerId":1}' http://localhost:8080/film/delete/1
+
+## 可用以下语句查询修改后的Person表
+curl  http://localhost:8080/film/person/all

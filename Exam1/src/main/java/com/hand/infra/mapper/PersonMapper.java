@@ -1,6 +1,9 @@
 package com.hand.infra.mapper;
 
+import com.hand.domain.eneity.Film;
 import com.hand.domain.eneity.Person;
+
+import java.util.List;
 
 public interface PersonMapper {
     int deleteByPrimaryKey(Short customerId);
@@ -14,4 +17,5 @@ public interface PersonMapper {
     int updateByPrimaryKeySelective(Person record);
 
     int updateByPrimaryKey(Person record);
+    List<Person> selectUsers();
 }

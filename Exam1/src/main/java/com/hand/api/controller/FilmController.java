@@ -56,5 +56,12 @@ public class FilmController {
     public int updateUser( Person user){
         return personService.updateById(user);
     }
+    @RequestMapping(value = "/person/all",method = RequestMethod.GET)
+    public Object findUser(@RequestBody
+                              @RequestParam(name = "pageNum", required = false, defaultValue = "1") int pageNum,@RequestBody
+                              @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize
+    ){
+        return personService.findAllUser(pageNum,pageSize);
+    }
 
 }
