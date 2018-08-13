@@ -1,0 +1,68 @@
+server:
+  port: 8080
+# 下面是配置undertow作为服务器的参数
+  undertow:
+    # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
+    io-threads: 4
+    # 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程,它的值设置取决于系统的负载
+    worker-threads: 20
+    # 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理
+    # 每块buffer的空间大小,越小的空间被利用越充分
+    buffer-size: 1024
+    # 是否分配的直接内存
+    direct-buffers: true
+
+
+spring:
+    datasource:
+        name: mysql_test
+        type: com.alibaba.druid.pool.DruidDataSource
+        #druid相关配置
+        druid:
+          #监控统计拦截的filters
+          filters: stat
+          driver-class-name: com.mysql.jdbc.Driver
+          #基本属性
+          url: jdbc:mysql://192.168.99.100:3306/mytest?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+          username: root
+          password: root
+          #配置初始化大小/最小/最大
+          initial-size: 1
+          min-idle: 1
+          max-active: 20
+          #获取连接等待超时时间
+          max-wait: 60000
+          #间隔多久进行一次检测，检测需要关闭的空闲连接
+          time-between-eviction-runs-millis: 60000
+          #一个连接在池中最小生存的时间
+          min-evictable-idle-time-millis: 300000
+          validation-query: SELECT 'x'
+          test-while-idle: true
+          test-on-borrow: false
+          test-on-return: false
+          #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+          pool-prepared-statements: false
+          max-pool-prepared-statement-per-connection-size: 20
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.hand.model
+
+
+
+#pagehelper
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+    returnPageInfo: check
+# 配置通用mapper插件的内容
+# 第一个是配置通用接口所在的目录
+
+#mapper:
+#  mappers: com.utils.CommonMapper
+#  not-empty: false
+#  identity: MYSQL
+
+
